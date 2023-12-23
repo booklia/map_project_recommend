@@ -1,0 +1,32 @@
+.map-page {
+    height: 100vh;
+    --symbol: '-'
+}
+.route-component {
+    border-top: 5px solid #2AAB6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-left: 5px solid #2AAB6D;
+    border-right: 5px solid #2AAB6D;
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    bottom: 0;
+    background-color: #fff;
+    max-height: 100vh;
+    overflow-y: scroll;
+}
+.route-component__before {
+    line-height: 24px;
+    font-size: 40px;
+    /*position: absolute;*/
+    right: 5px;
+    width: 100%;
+    background-color: #2AAB6D;
+    display: flex;
+    justify-content: flex-end;
+    top: -45px;
+    color: #fff;
+}.route-component__before:hover {
+     color: #c2c2c2;
+ }

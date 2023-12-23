@@ -1,0 +1,75 @@
+.survey-page__block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.survey-page__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 28px;
+    gap: 40px;
+}
+.survey-page__controls {
+    display: flex;
+    gap: 20px;
+    margin: 20px;
+    justify-content: center;
+    justify-content: center;
+}
+
+.survey-page__label {
+    text-align: left;
+}
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 5px;
+    position: relative;
+}
+/* hide the inputs */
+.star-rating input {
+    display: none;
+}
+/* set properties of all labels */
+.star-rating > label {
+    width: 15px;
+    height: 15px;
+    font-family: Arial;
+    font-size: 15px;
+    transition: 0.2s ease;
+    color: orange;
+}
+/* give label a hover state */
+.star-rating label:hover {
+    color: #ff69b4;
+    transition: 0.2s ease;
+}
+.star-rating label:active::before {
+    transform:scale(1.1);
+}
+
+/* set shape of unselected label */
+.star-rating label::before {
+    content: '\2606';
+    position: absolute;
+    top: 0px;
+    line-height: 12px;
+    height: 10px;
+    width: 10px;
+}
+/* set full star shape for checked label and those that come after it */
+.star-rating input:checked ~ label:before {
+    content:'\2605';
+}
+
+@-moz-document url-prefix() {
+    .star-rating input:checked ~ label:before {
+        font-size: 12px;
+        line-height: 21px;
+    }
+}
