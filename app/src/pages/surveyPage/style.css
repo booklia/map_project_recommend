@@ -3,7 +3,23 @@
     flex-direction: column;
     gap: 20px;
 }
+.error-block {
+    position: absolute;
+    width: 250px;
+    border-radius: 10px;
+    height: 60px;
+    color: #fff;
+    background-color: crimson;
+    font-size: 24px;
+    font-weight: 700;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    box-shadow: 5px 5px 15px #383c44;
 
+    top: 20px;
+}
 .survey-page__item {
     display: flex;
     align-items: center;

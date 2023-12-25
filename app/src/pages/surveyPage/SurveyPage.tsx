@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import {useNavigate} from "react-router-dom";
 import './style.css'
 
@@ -61,8 +61,16 @@ const SurveyPage = ({data, setData}: {data: {[k: string]: any}, setData: React.D
   const currentCategory: keyof typeof categories = categoryKeys[category];
   const navigate = useNavigate();
   const formRef = useRef(null );
+  useEffect(() => {
+    setTimeout(() => setError(false), 5000)
+  }, [error])
   return (
     <div className='survey-page'>
+      {error && (
+        <div onClick={() => setError(false)} className='error-block'>
+          Вы не отметили все категории
+        </div>
+      )}
       <h2 className='survey-page__header'>Оцените категории</h2>
       <form ref={formRef} className='survey-page__form' onSubmit={() => {
         const formData = new FormData(formRef.current as unknown as HTMLFormElement);
@@ -88,23 +96,23 @@ const SurveyPage = ({data, setData}: {data: {[k: string]: any}, setData: React.D
                                      className='survey-page__button button'>Назад</button>
           }
           <button type={buttonType as 'button' | 'submit'} onClick={() => {
-                const formData = new FormData(formRef.current as unknown as HTMLFormElement);
-                const res: {[k: string]: any} = {}
-                const formArray = Array.from(formData.entries())
-                if (formArray.length !== 4) {
-                  setError(true)
-                  return
-                }
-                setError(false)
-                formArray.forEach((el: [string, any]) => {res[el[0]] = Number(el[1])})
-                setData({...data, ...res})
-                setCategory(Math.min(category + 1, 2))
-                if (category === 2) {
-                  setButtonType('submit')
-                }
-              }
+            const formData = new FormData(formRef.current as unknown as HTMLFormElement);
+            const res: {[k: string]: any} = {}
+            const formArray = Array.from(formData.entries())
+            if (formArray.length !== 4) {
+              setError(true)
+              return
             }
-            className='survey-page__button button'> {category !== 2 ? 'Далее' : 'Отправить'}
+            setError(false)
+            formArray.forEach((el: [string, any]) => {res[el[0]] = Number(el[1])})
+            setData({...data, ...res})
+            setCategory(Math.min(category + 1, 2))
+            if (category === 2) {
+              setButtonType('submit')
+            }
+          }
+          }
+                  className='survey-page__button button'> {category !== 2 ? 'Далее' : 'Отправить'}
           </button>
         </div>
       </form>
